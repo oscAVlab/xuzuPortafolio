@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xužu — Manuel Alejandro Mendoza</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080810;
+  --fg: #EDE9F5;
+  --mid: #9B90C2;
+  --dim: #4A4560;
+  --acc: #C4B5E8;
+  --line: rgba(155,144,194,0.15);
+  --card: rgba(155,144,194,0.06);
+  --tool1: #B8D4C8;
+  --tool2: #C8B8D4;
+  --tool3: #D4C8B8;
+  --tool4: #B8C8D4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  background: rgba(8,8,16,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--line);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--acc);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--acc); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 72px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155,144,194,0.12) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  z-index: 0;
+}
+
+.hero-glow2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,181,232,0.06) 0%, transparent 70%);
+  bottom: 100px;
+  left: 200px;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-alias {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(96px, 14vw, 200px);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 20px;
+}
+
+.hero-alias .u-mark {
+  color: var(--acc);
+}
+
+.hero-quichua {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--mid);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--dim);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.hero-roles {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-role {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+
+.hero-sep {
+  margin: 0 14px;
+  color: var(--dim);
+  font-size: 9px;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 80px;
+  right: 72px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-scroll span {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dim);
+  writing-mode: vertical-rl;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--mid), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.6); }
+}
+
+/* SECTION BASE */
+section {
+  padding: 120px 72px;
+  border-top: 0.5px solid var(--line);
+  position: relative;
+}
+
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 48px;
+  color: var(--fg);
+}
+
+/* CONCEPTO */
+#concepto {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 140px 72px;
+}
+
+.concepto-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--fg);
+  letter-spacing: 0.01em;
+}
+
+.concepto-text em {
+  font-style: italic;
+  color: var(--acc);
+}
+
+/* HERRAMIENTAS — ÍNDICE */
+#herramientas {
+  padding: 120px 72px 0;
+}
+
+.tools-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+.tools-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--mid);
+  padding-top: 8px;
+}
+
+/* TOOL PAGE */
+.tool-page {
+  padding: 80px 72px 120px;
+  border-top: 0.5px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+  position: relative;
+}
+
+.tool-page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+}
+
+.tool-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+
+.tool-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 300;
+  line-height: 0.9;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.tool-tagline {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 0.5px solid var(--line);
+}
+
+.tool-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--mid);
+  margin-bottom: 28px;
+}
+
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--acc);
+  text-decoration: none;
+  border: 0.5px solid rgba(196,181,232,0.3);
+  padding: 10px 18px;
+  transition: all 0.2s;
+  margin-bottom: 40px;
+}
+
+.tool-link:hover {
+  background: rgba(196,181,232,0.08);
+  border-color: var(--acc);
+}
+
+.tool-link::after {
+  content: '↗';
+  font-size: 12px;
+}
+
+.tool-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.video-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 8px;
+}
+
+.yt-wrap {
+  position: relative;
+  padding-top: 56.25%;
+  background: var(--card);
+  border: 0.5px solid var(--line);
+}
+
+.yt-wrap.shorts {
+  padding-top: 177.78%;
+  max-width: 280px;
+}
+
+.yt-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.shorts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+/* COLOR ACCENTS PER TOOL */
+.tool-nature .tool-name { color: var(--tool1); }
+.tool-nature .tool-tagline { color: var(--tool1); }
+.tool-nature .tool-link { color: var(--tool1); border-color: rgba(184,212,200,0.3); }
+.tool-nature .tool-link:hover { background: rgba(184,212,200,0.08); border-color: var(--tool1); }
+
+.tool-placa .tool-name { color: var(--tool2); }
+.tool-placa .tool-tagline { color: var(--tool2); }
+.tool-placa .tool-link { color: var(--tool2); border-color: rgba(200,184,212,0.3); }
+.tool-placa .tool-link:hover { background: rgba(200,184,212,0.08); border-color: var(--tool2); }
+
+.tool-ebomba .tool-name { color: var(--tool3); }
+.tool-ebomba .tool-tagline { color: var(--tool3); }
+.tool-ebomba .tool-link { display: none; }
+
+.tool-reaktor .tool-name { color: var(--tool4); }
+.tool-reaktor .tool-tagline { color: var(--tool4); }
+.tool-reaktor .tool-link { color: var(--tool4); border-color: rgba(184,200,212,0.3); }
+.tool-reaktor .tool-link:hover { background: rgba(184,200,212,0.08); border-color: var(--tool4); }
+
+/* PROYECTOS */
+#proyectos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.proyecto {
+  padding: 100px 64px;
+}
+
+.proyecto:first-child {
+  border-right: 0.5px solid var(--line);
+}
+
+.proyecto-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+
+.proyecto-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 0.9;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.proyecto-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--mid);
+  margin-bottom: 28px;
+}
+
+.proyecto-video {
+  margin-top: 24px;
+}
+
+/* HITO PARTHENOPE */
+.hito {
+  margin-top: 40px;
+  border: 0.5px solid rgba(196,181,232,0.25);
+  background: rgba(196,181,232,0.04);
+  padding: 24px 28px;
+  position: relative;
+}
+
+.hito::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: var(--acc);
+}
+
+.hito-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.hito-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg);
+}
+
+.hito-text strong {
+  color: var(--acc);
+  font-weight: 400;
+}
+
+/* RECONOCIMIENTOS */
+#reconocimientos {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
+}
+
+.award-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.award-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--line);
+  align-items: start;
+}
+
+.award-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--mid);
+  padding-top: 2px;
+  letter-spacing: 0.1em;
+}
+
+.award-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 3px;
+  letter-spacing: 0.02em;
+}
+
+.award-detail {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.4;
+}
+
+.award-item.featured .award-title {
+  color: var(--acc);
+}
+
+/* PRENSA */
+.press-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.press-item {
+  display: block;
+  text-decoration: none;
+  padding: 18px 0;
+  border-bottom: 0.5px solid var(--line);
+  transition: all 0.2s;
+}
+
+.press-item:hover .press-title {
+  color: var(--acc);
+}
+
+.press-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 5px;
+}
+
+.press-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--fg);
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+/* FESTIVALES */
+#festivales {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+
+.festival-col {
+  padding: 100px 48px;
+  border-right: 0.5px solid var(--line);
+}
+
+.festival-col:last-child {
+  border-right: none;
+}
+
+.festival-artist {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 0.5px solid var(--line);
+}
+
+.festival-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 0.5px solid rgba(155,144,194,0.07);
+  font-size: 12px;
+  gap: 12px;
+}
+
+.festival-row span:first-child {
+  color: var(--fg);
+  font-weight: 400;
+}
+
+.festival-row span:last-child {
+  color: var(--dim);
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+
+.festival-note {
+  padding: 100px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.festival-note-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--mid);
+  font-style: italic;
+}
+
+/* CONTACTO */
+#contacto {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.contact-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 40px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--line);
+  text-decoration: none;
+  color: var(--fg);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.contact-link:hover { color: var(--acc); }
+
+.contact-link-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.contact-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.meta-block {
+  padding: 28px;
+  border: 0.5px solid var(--line);
+  background: var(--card);
+}
+
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.meta-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--fg);
+}
+
+.meta-sub {
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+.avail-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #6DBFA0;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* FOOTER */
+footer {
+  padding: 40px 72px;
+  border-top: 0.5px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-alias {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+}
+
+.footer-copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--dim);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 24px 60px; }
+  section { padding: 80px 24px; }
+  .tool-page { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 80px; }
+  #proyectos { grid-template-columns: 1fr; }
+  .proyecto:first-child { border-right: none; border-bottom: 0.5px solid var(--line); }
+  .proyecto { padding: 60px 24px; }
+  #reconocimientos { grid-template-columns: 1fr; gap: 48px; }
+  #festivales { grid-template-columns: 1fr; }
+  .festival-col { padding: 40px 24px; border-right: none; border-bottom: 0.5px solid var(--line); }
+  .festival-note { padding: 40px 24px; }
+  #contacto { grid-template-columns: 1fr; gap: 48px; }
+  #herramientas { padding: 80px 24px 0; }
+  .tools-intro { grid-template-columns: 1fr; gap: 24px; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  .hero-scroll { display: none; }
+  #concepto { padding: 80px 24px; }
+  .shorts-row { grid-template-columns: 1fr; }
+  .yt-wrap.shorts { max-width: 100%; }
+}
+
+/* VIDEO BIG LINKS */
+.video-big-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 0.5px solid var(--line);
+  text-decoration: none;
+  transition: border-color 0.2s;
+  gap: 20px;
+}
+.video-big-link:hover .vbl-title { color: var(--fg); }
+.video-big-link:hover { border-color: var(--acc); }
+
+.vbl-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.vbl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--acc);
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+/* YT FALLBACK */
+.yt-fallback {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.yt-fallback:hover { color: var(--acc); }
+
+/* FADE IN ANIMATION */
+.fade-in {
+  opacity: 1;
+  transform: none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">xužu</a>
+  <ul class="nav-links">
+    <li><a href="#concepto">Concepto</a></li>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#reconocimientos">Reconocimientos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-noise"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-alias">x<span class="u-mark">u</span>žu</div>
+    <div class="hero-quichua">forastero — aquel que no pertenece</div>
+    <div class="hero-name">Manuel Alejandro Mendoza · Ibarra, Ecuador — Madrid, España</div>
+    <div class="hero-roles">
+      <span class="hero-role">Compositor</span>
+      <span class="hero-sep">·</span>
+      <span class="hero-role">Luthier tecnológico</span>
+      <span class="hero-sep">·</span>
+      <span class="hero-role">Ingeniero de sonido</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- CONCEPTO -->
+<section id="concepto">
+  <p class="concepto-text fade-in">
+    <em>xužu</em> significa forastero — aquel que no pertenece. Trabajo desde ese borde: traduciendo la memoria sonora de un territorio a instrumentos y expresiones que no existían.
+  </p>
+</section>
+
+<!-- HERRAMIENTAS — INTRO -->
+<section id="herramientas" class="fade-in">
+  <div class="tools-intro">
+    <div>
+      <div class="sec-label">Herramientas propias</div>
+      <div class="sec-title">Luthiería<br>del siglo XXI.</div>
+    </div>
+    <div class="tools-sub">
+      Cada herramienta nació de una necesidad artística concreta que el software existente no podía resolver. Instrumentos, sintetizadores, interfaces — construidos para hacer posible lo que de otro modo no existiría.
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 01: NATURE MIDI -->
+<div class="tool-page tool-nature fade-in">
+  <div>
+    <div class="tool-number">01 / 04</div>
+    <div class="tool-name">Nature<br>MIDI</div>
+    <div class="tool-tagline">Entorno natural → lenguaje musical</div>
+    <div class="tool-desc">
+      Un lienzo web que captura datos en tiempo real del entorno natural — clima, radiación solar, actividad sísmica, fases lunares, caudal de ríos — y los transforma en modulación y notas MIDI. La naturaleza como instrumento. El mundo como partitura.
+    </div>
+    <a class="tool-link" href="https://oscavlab.github.io/NatureMIDI/" target="_blank" rel="noopener">Abrir aplicación</a>
+  </div>
+  <div class="tool-videos">
+    <a class="video-big-link" href="https://youtu.be/RnPy4KX6Qac" target="_blank" rel="noopener">
+      <span class="vbl-label">Demo 01</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+    <a class="video-big-link" href="https://youtu.be/7XYOHP1MA-I" target="_blank" rel="noopener">
+      <span class="vbl-label">Demo 02</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+  </div>
+</div>
+
+<!-- TOOL 02: PLACA -->
+<div class="tool-page tool-placa fade-in">
+  <div>
+    <div class="tool-number">02 / 04</div>
+    <div class="tool-name">PLACA</div>
+    <div class="tool-tagline">Figuras de Chladni → partículas sonoras</div>
+    <div class="tool-desc">
+      Generador de partículas multicapa basado en las figuras de Chladni — los patrones geométricos que forma la materia al vibrar. Una interface visual y sonora donde la física del sonido se convierte en imagen generativa en tiempo real.
+    </div>
+    <a class="tool-link" href="https://oscavlab.github.io/placa/" target="_blank" rel="noopener">Abrir aplicación</a>
+  </div>
+  <div class="tool-videos">
+    <a class="video-big-link" href="https://youtube.com/shorts/x_beXRU49ig" target="_blank" rel="noopener">
+      <span class="vbl-label">Demo 01</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+    <a class="video-big-link" href="https://youtu.be/vSQq_cGZj7I" target="_blank" rel="noopener">
+      <span class="vbl-label">Demo 02</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+    <a class="video-big-link" href="https://youtu.be/SSCIrRJUT_Q" target="_blank" rel="noopener">
+      <span class="vbl-label">Demo 03</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+  </div>
+</div>
+
+<!-- TOOL 03: EBOMBA -->
+<div class="tool-page tool-ebomba fade-in">
+  <div>
+    <div class="tool-number">03 / 04</div>
+    <div class="tool-name">eBomba</div>
+    <div class="tool-tagline">Percusión andina → síntesis monofónica</div>
+    <div class="tool-desc">
+      Instrumento virtual que emula la bomba — percusión tradicional del pueblo afroecuatoriano del Valle del Chota — transformada en síntesis monofónica. Un proceso de traducción cultural: el timbre, el ataque y la resonancia de un instrumento de madera y cuero, convertidos en código.
+    </div>
+  </div>
+  <div class="tool-videos">
+    <a class="video-big-link" href="https://www.youtube.com/watch?v=zrChu0X0JmE" target="_blank" rel="noopener">
+      <span class="vbl-label">Video 01</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+    <a class="video-big-link" href="https://youtu.be/k8IUYPFuV5c" target="_blank" rel="noopener">
+      <span class="vbl-label">Video 02</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+  </div>
+</div>
+
+<!-- TOOL 04: REAKTOR -->
+<div class="tool-page tool-reaktor fade-in">
+  <div>
+    <div class="tool-number">04 / 04</div>
+    <div class="tool-name">Reaktor<br>Ensembles</div>
+    <div class="tool-tagline">Procesamiento en vivo · Native Instruments</div>
+    <div class="tool-desc">
+      Diseño de ensembles personalizados en Reaktor para el procesamiento en vivo de percusión y voz. Trabajo destacado por Native Instruments, que respaldó el sistema como artista auspiciado. Una cadena de señal diseñada desde cero para necesidades que los plugins estándar no podían resolver.
+    </div>
+    <a class="tool-link" href="https://blog.native-instruments.com/watch-dive-deeper-into-ecuadors-exploding-music-scene/" target="_blank" rel="noopener">Native Instruments feature</a>
+  </div>
+  <div class="tool-videos">
+    <a class="video-big-link" href="https://www.youtube.com/watch?v=5ol2pluhnnU&t=206s" target="_blank" rel="noopener">
+      <span class="vbl-label">Sistema en vivo — EVHA × Native Instruments</span>
+      <span class="vbl-title">Ver video ↗</span>
+    </a>
+  </div>
+</div>
+
+<!-- PROYECTOS -->
+<section style="padding: 0; border-top: 0.5px solid var(--line);">
+  <div style="padding: 80px 72px 48px;">
+    <div class="sec-label fade-in">Proyectos artísticos</div>
+    <div class="sec-title fade-in">Obra.</div>
+  </div>
+  <div id="proyectos">
+    <div class="proyecto fade-in">
+      <div class="proyecto-label">Proyecto principal</div>
+      <div class="proyecto-name">LaTorre</div>
+      <div class="proyecto-desc">
+        Música tradicional ecuatoriana con producción contemporánea y tecnología escénica. El punto de encuentro entre lo orgánico y lo electrónico, entre el archivo y el presente.
+      </div>
+      <div class="hito">
+        <div class="hito-label">Hito · 2024</div>
+        <div class="hito-text">
+          <em>'Memoria de LaTorre'</em> — compuesta, producida y mezclada íntegramente por xužu — incluida en la banda sonora de <strong>Parthenope</strong> (2024), última película de <strong>Paolo Sorrentino</strong>, <strong>Premio del Jurado en el Festival de Cannes</strong>.
+        </div>
+      </div>
+      <div class="proyecto-video">
+        <a class="video-big-link" href="https://www.youtube.com/watch?v=poPANMsJdDE" target="_blank" rel="noopener">
+          <span class="vbl-label">LaTorre — Resurrección ft. Las Añez</span>
+          <span class="vbl-title">Ver video ↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="proyecto fade-in">
+      <div class="proyecto-label">Proyecto experimental</div>
+      <div class="proyecto-name">EVHA</div>
+      <div class="proyecto-desc">
+        Electrónica experimental construida desde la identidad andina y amazónica ecuatoriana. El proyecto donde la investigación instrumental y la práctica escénica se fusionan.
+      </div>
+      <div style="margin-top: 20px; margin-bottom: 28px; padding: 20px 24px; border: 0.5px solid var(--line); background: var(--card);">
+        <div class="hito-label">Reconocimiento</div>
+        <div class="hito-text" style="font-size: 14px;">Sistema en vivo con Reaktor auspiciado y destacado por <strong>Native Instruments</strong>. Featured en The FADER, Bandcamp Daily y Sounds and Colours.</div>
+      </div>
+      <div class="proyecto-video">
+        <a class="video-big-link" href="https://www.youtube.com/watch?v=GBgADTCc4G0" target="_blank" rel="noopener">
+          <span class="vbl-label">EVHA — Caminar a Donde Sea</span>
+          <span class="vbl-title">Ver video ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECONOCIMIENTOS + PRENSA -->
+<section id="reconocimientos" class="fade-in">
+  <div>
+    <div class="sec-label">Trayectoria</div>
+    <div class="sec-title">Reconoci-<br>mientos.</div>
+    <div class="award-list">
+      <div class="award-item featured">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">Parthenope — Paolo Sorrentino</div>
+          <div class="award-detail">'Memoria' en la banda sonora. Premio del Jurado, Festival de Cannes</div>
+        </div>
+      </div>
+      <div class="award-item featured">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">MICSUR</div>
+          <div class="award-detail">Delegación ecuatoriana, mercado cultural del sur</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2021</div>
+        <div>
+          <div class="award-title">Premio Ibermúsicas</div>
+          <div class="award-detail">Canción Popular</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2021</div>
+        <div>
+          <div class="award-title">SIMA Social Media Impact Awards</div>
+          <div class="award-detail">Documental SIONA — Pulitzer Center</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2019–21</div>
+        <div>
+          <div class="award-title">Programa de Incentivos SAYCE</div>
+          <div class="award-detail">Ediciones 2019 y 2021</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2020</div>
+        <div>
+          <div class="award-title">2º Lugar — Neumann Berlin Mixing Contest</div>
+          <div class="award-detail">Concurso internacional de mezcla (Latam)</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2017</div>
+        <div>
+          <div class="award-title">"50 Best Songs from Latin America" — NOISY USA</div>
+          <div class="award-detail">"Culebra del Monte" con EVHA</div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2016</div>
+        <div>
+          <div class="award-title">2º Lugar — "Música de mi Tierra" SAYCE</div>
+          <div class="award-detail"></div>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2014</div>
+        <div>
+          <div class="award-title">Fondo SECU para la Creación Artística</div>
+          <div class="award-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sec-label">Prensa</div>
+    <div class="sec-title">Cobertura.</div>
+    <div class="press-grid">
+      <a class="press-item" href="https://www.thefader.com/2016/12/16/evha-ecuador-musical-heritage-interview" target="_blank" rel="noopener">
+        <div class="press-source">The FADER</div>
+        <div class="press-title">Why Ecuador's Young Musicians Are Embracing Their Country's Cultural History</div>
+      </a>
+      <a class="press-item" href="https://daily.bandcamp.com/features/evha-electronic-feature" target="_blank" rel="noopener">
+        <div class="press-source">Bandcamp Daily</div>
+        <div class="press-title">EVHA's Synthesized Beat is Pumping Ecuador's Electronic Heart</div>
+      </a>
+      <a class="press-item" href="https://blog.native-instruments.com/watch-dive-deeper-into-ecuadors-exploding-music-scene/" target="_blank" rel="noopener">
+        <div class="press-source">Native Instruments</div>
+        <div class="press-title">Dive Deeper Into Ecuador's Exploding Music Scene</div>
+      </a>
+      <a class="press-item" href="https://soundsandcolours.com/articles/ecuador/soaking-musical-knowledge-roots-interview-el-viejo-hombre-de-los-andes-exclusive-new-video-40123/" target="_blank" rel="noopener">
+        <div class="press-source">Sounds and Colours</div>
+        <div class="press-title">Soaking Up Musical Knowledge at the Roots</div>
+      </a>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <div class="sec-label">Sponsor</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--fg); margin-top: 8px;">Universal Audio · UADx</div>
+      <div style="font-size: 11px; color: var(--dim); margin-top: 4px; letter-spacing: 0.05em;">Software Sponsored Artist</div>
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVALES -->
+<section style="padding: 0; border-top: 0.5px solid var(--line);">
+  <div style="padding: 80px 72px 48px;">
+    <div class="sec-label fade-in">Trayectoria escénica</div>
+    <div class="sec-title fade-in">En escena.</div>
+  </div>
+  <div id="festivales">
+    <div class="festival-col fade-in">
+      <div class="festival-artist">LaTorre</div>
+      <div class="festival-row"><span>Festival Capitol Land</span><span>2024</span></div>
+      <div class="festival-row"><span>BIME, Bilbao</span><span>2023</span></div>
+      <div class="festival-row"><span>Underfest, Vigo</span><span>2023</span></div>
+      <div class="festival-row"><span>Fiesta de la Hispanidad, Madrid</span><span>2022</span></div>
+      <div class="festival-row"><span>Festival Contracorriente, Quito</span><span>2022</span></div>
+      <div class="festival-row"><span>TEDx, Quito</span><span>2021</span></div>
+      <div class="festival-row"><span>Festival Isla Viva, Quito</span><span>2020</span></div>
+      <div class="festival-row"><span>Festival Marvin, CDMX</span><span>2019</span></div>
+    </div>
+    <div class="festival-col fade-in">
+      <div class="festival-artist">EVHA</div>
+      <div class="festival-row"><span>Fusion Festival, Lärz (DE)</span><span>2019</span></div>
+      <div class="festival-row"><span>C.C. Teopanzolco, Cuernavaca</span><span>2019</span></div>
+      <div class="festival-row"><span>Festival Marvin, CDMX</span><span>2019</span></div>
+      <div class="festival-row"><span>Festival Contrapedal, Montevideo</span><span>2018</span></div>
+      <div class="festival-row"><span>Verano de las Artes, Quito</span><span>2016 · 2018</span></div>
+      <div class="festival-row"><span>Festival Tercera Llamada, Quito</span><span>2017</span></div>
+      <div class="festival-row"><span>Marsatac, Quito</span><span>2014</span></div>
+    </div>
+    <div class="festival-note fade-in">
+      <p class="festival-note-text">
+        Casi dos décadas de experiencia como técnico de sonido en directo y diseñador de playback para producciones de gran formato.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="fade-in">
+  <div>
+    <div class="sec-label">Contacto</div>
+    <div class="contact-big">Hablemos.</div>
+    <div class="contact-links">
+      <a class="contact-link" href="/cdn-cgi/l/email-protection#90f1fcf5faf1fef4e2ffbefdf5fef4ffeaf1bee3f4d0f7fdf1f9fcbef3fffd">
+        <span><span class="__cf_email__" data-cfemail="fa9b969f909b949e8895d4979f949e95809bd4899eba9d979b9396d4999597">[email&#160;protected]</span></span>
+        <span class="contact-link-label">Email</span>
+      </a>
+      <a class="contact-link" href="https://www.instagram.com/xuzu593/" target="_blank" rel="noopener">
+        <span>@xuzu593</span>
+        <span class="contact-link-label">Instagram</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/alejandro-mendozac/" target="_blank" rel="noopener">
+        <span>alejandro-mendozac</span>
+        <span class="contact-link-label">LinkedIn</span>
+      </a>
+      <a class="contact-link" href="https://credits.muso.ai/profile/ef3a53d1-918f-4f57-a1a6-11acfc75f50c/credits" target="_blank" rel="noopener">
+        <span>Ver créditos completos</span>
+        <span class="contact-link-label">Muso.ai</span>
+      </a>
+    </div>
+  </div>
+  <div class="contact-meta">
+    <div class="meta-block">
+      <div class="meta-label">Ubicación</div>
+      <div class="meta-value">Madrid</div>
+      <div class="meta-sub">España · desde septiembre 2025</div>
+    </div>
+    <div class="meta-block">
+      <div class="meta-label">Disponibilidad</div>
+      <div class="meta-value"><span class="avail-dot"></span>Abierto a proyectos</div>
+      <div class="meta-sub">Residencias · Creación · Producción · Directo</div>
+    </div>
+    <div class="meta-block">
+      <div class="meta-label">Origen</div>
+      <div class="meta-value" style="font-size: 18px;">Ibarra, Ecuador</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-alias">xužu — Manuel Alejandro Mendoza</div>
+  <div class="footer-copy">Madrid · 2025</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Fade in on scroll
+const observer = new Interse
