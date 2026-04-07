@@ -126,7 +126,7 @@ nav {
 
 .hero-alias {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(96px, 14vw, 200px);
+  font-size: clamp(72px, 10vw, 140px);
   font-weight: 300;
   line-height: 0.85;
   letter-spacing: -0.02em;
@@ -228,12 +228,34 @@ section {
 
 .sec-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 5vw, 64px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -0.01em;
   margin-bottom: 48px;
   color: var(--fg);
+}
+
+/* SCREENSHOTS GRID */
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.screenshots-grid img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border: 0.5px solid var(--line);
+  display: block;
+  filter: brightness(0.85);
+  transition: filter 0.2s;
+}
+
+.screenshots-grid img:hover {
+  filter: brightness(1);
 }
 
 /* CONCEPTO */
@@ -246,7 +268,7 @@ section {
 
 .concepto-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 3vw, 36px);
+  font-size: clamp(18px, 2.2vw, 28px);
   font-weight: 300;
   line-height: 1.55;
   color: var(--fg);
@@ -306,7 +328,7 @@ section {
 
 .tool-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(48px, 6vw, 80px);
+  font-size: clamp(36px, 4.5vw, 56px);
   font-weight: 300;
   line-height: 0.9;
   margin-bottom: 20px;
@@ -318,7 +340,7 @@ section {
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 0.5px solid var(--line);
 }
@@ -443,7 +465,7 @@ section {
 
 .proyecto-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 300;
   line-height: 0.9;
   margin-bottom: 20px;
@@ -866,7 +888,7 @@ footer {
   <div class="hero-content">
     <div class="hero-alias">x<span class="u-mark">u</span>žu</div>
     <div class="hero-quichua">forastero — aquel que no pertenece</div>
-    <div class="hero-name">Manuel Alejandro Mendoza · Ibarra, Ecuador — Madrid, España</div>
+    <div class="hero-name">Manuel Alejandro Mendoza · de Ibarra, Ecuador · Madrid</div>
     <div class="hero-roles">
       <span class="hero-role">Compositor</span>
       <span class="hero-sep">·</span>
@@ -911,16 +933,28 @@ footer {
       Un lienzo web que captura datos en tiempo real del entorno natural — clima, radiación solar, actividad sísmica, fases lunares, caudal de ríos — y los transforma en modulación y notas MIDI. La naturaleza como instrumento. El mundo como partitura.
     </div>
     <a class="tool-link" href="https://oscavlab.github.io/NatureMIDI/" target="_blank" rel="noopener">Abrir aplicación</a>
+    <div class="screenshots-grid">
+      <img src="NatureMIDI.png" alt="NatureMIDI" loading="lazy">
+      <img src="NatureMIDI_1_Dia.png" alt="NatureMIDI 1 día" loading="lazy">
+      <img src="NatureMIDI_1_Semana.png" alt="NatureMIDI 1 semana" loading="lazy">
+      <img src="NatureMIDI_1_an_o.png" alt="NatureMIDI 1 año" loading="lazy">
+      <img src="NatureMIDI_2_an_os.png" alt="NatureMIDI 2 años" loading="lazy">
+      <img src="NatureMIDI_4_an_os.png" alt="NatureMIDI 4 años" loading="lazy">
+    </div>
   </div>
   <div class="tool-videos">
-    <a class="video-big-link" href="https://youtu.be/RnPy4KX6Qac" target="_blank" rel="noopener">
-      <span class="vbl-label">Demo 01</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
-    <a class="video-big-link" href="https://youtu.be/7XYOHP1MA-I" target="_blank" rel="noopener">
-      <span class="vbl-label">Demo 02</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
+    <div>
+      <div class="video-label">Demo 01</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/7XYOHP1MA-I?si=l8As4GQaWsmzdUhC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div>
+      <div class="video-label">Demo 02</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/RnPy4KX6Qac?si=8zA3vDCE03EbO_UC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -936,15 +970,17 @@ footer {
     <a class="tool-link" href="https://oscavlab.github.io/placa/" target="_blank" rel="noopener">Abrir aplicación</a>
   </div>
   <div class="tool-videos">
-    <a class="video-big-link" href="https://youtube.com/shorts/x_beXRU49ig" target="_blank" rel="noopener">
-      <span class="vbl-label">Demo 01</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
-    <a class="video-big-link" href="https://youtu.be/vSQq_cGZj7I" target="_blank" rel="noopener">
+    <div>
+      <div class="video-label">Demo 01</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/SSCIrRJUT_Q?si=_87f62W6r_an5VnH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+    <a class="video-big-link" href="https://youtube.com/shorts/vSQq_cGZj7I" target="_blank" rel="noopener">
       <span class="vbl-label">Demo 02</span>
       <span class="vbl-title">Ver video ↗</span>
     </a>
-    <a class="video-big-link" href="https://youtu.be/SSCIrRJUT_Q" target="_blank" rel="noopener">
+    <a class="video-big-link" href="https://youtube.com/shorts/x_beXRU49ig" target="_blank" rel="noopener">
       <span class="vbl-label">Demo 03</span>
       <span class="vbl-title">Ver video ↗</span>
     </a>
@@ -962,14 +998,18 @@ footer {
     </div>
   </div>
   <div class="tool-videos">
-    <a class="video-big-link" href="https://www.youtube.com/watch?v=zrChu0X0JmE" target="_blank" rel="noopener">
-      <span class="vbl-label">Video 01</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
-    <a class="video-big-link" href="https://youtu.be/k8IUYPFuV5c" target="_blank" rel="noopener">
-      <span class="vbl-label">Video 02</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
+    <div>
+      <div class="video-label">Video 01</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/k8IUYPFuV5c?si=zeckuTQVuXWKdBlq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div>
+      <div class="video-label">Video 02</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/zrChu0X0JmE?si=8CDUc7V9IuMbSK8P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -985,10 +1025,12 @@ footer {
     <a class="tool-link" href="https://blog.native-instruments.com/watch-dive-deeper-into-ecuadors-exploding-music-scene/" target="_blank" rel="noopener">Native Instruments feature</a>
   </div>
   <div class="tool-videos">
-    <a class="video-big-link" href="https://www.youtube.com/watch?v=5ol2pluhnnU&t=206s" target="_blank" rel="noopener">
-      <span class="vbl-label">Sistema en vivo — EVHA × Native Instruments</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
+    <div>
+      <div class="video-label">Sistema en vivo — EVHA × Native Instruments</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/5ol2pluhnnU?si=MqwS7BNi2FGHpsBL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1016,6 +1058,9 @@ footer {
           <span class="vbl-label">LaTorre — Resurrección ft. Las Añez</span>
           <span class="vbl-title">Ver video ↗</span>
         </a>
+        <div class="yt-wrap" style="margin-top:16px">
+          <iframe src="https://www.youtube-nocookie.com/embed/poPANMsJdDE?si=nQ70ZTl1FIrNyNMn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
     <div class="proyecto fade-in">
@@ -1029,10 +1074,13 @@ footer {
         <div class="hito-text" style="font-size: 14px;">Sistema en vivo con Reaktor auspiciado y destacado por <strong>Native Instruments</strong>. Featured en The FADER, Bandcamp Daily y Sounds and Colours.</div>
       </div>
       <div class="proyecto-video">
-        <a class="video-big-link" href="https://www.youtube.com/watch?v=GBgADTCc4G0" target="_blank" rel="noopener">
+        <a class="video-big-link" href="https://www.youtube.com/watch?v=Tmbf_E6GuNA" target="_blank" rel="noopener">
           <span class="vbl-label">EVHA — Caminar a Donde Sea</span>
           <span class="vbl-title">Ver video ↗</span>
         </a>
+        <div class="yt-wrap" style="margin-top:16px">
+          <iframe src="https://www.youtube-nocookie.com/embed/Tmbf_E6GuNA?si=JiFy6kv3Sv_nxMY4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
