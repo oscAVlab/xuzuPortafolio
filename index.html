@@ -46,10 +46,10 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 0.12em;
   color: var(--acc);
   text-decoration: none;
 }
@@ -234,12 +234,14 @@ section {
   letter-spacing: 0.04em;
   margin-bottom: 48px;
   color: var(--fg);
+  hyphens: none;
+  word-break: keep-all;
 }
 
 /* SCREENSHOTS GRID */
 .screenshots-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 6px;
   margin-top: 24px;
 }
@@ -398,7 +400,7 @@ section {
 
 .yt-wrap {
   position: relative;
-  padding-top: 56.25%;
+  padding-top: 42%;
   background: var(--card);
   border: 0.5px solid var(--line);
 }
@@ -530,6 +532,8 @@ section {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 80px;
+  align-items: start;
+  overflow: visible;
 }
 
 .award-list {
@@ -932,8 +936,11 @@ footer {
     </div>
     <a class="tool-link" href="https://oscavlab.github.io/NatureMIDI/" target="_blank" rel="noopener">Abrir aplicación</a>
     <div class="screenshots-grid">
-      <img src="NatureMIDI%201%20Dia.png" alt="NatureMIDI 1 día" loading="lazy">
-      <img src="NatureMIDI%201%20Semana.png" alt="NatureMIDI 1 semana" loading="lazy">
+      <img src="NatureMIDI_1_Dia.png" alt="NatureMIDI 1 día" loading="lazy">
+      <img src="NatureMIDI_1_Semana.png" alt="NatureMIDI 1 semana" loading="lazy">
+      <img src="NatureMIDI_1_ano.png" alt="NatureMIDI 1 año" loading="lazy">
+      <img src="NatureMIDI_2_anos.png" alt="NatureMIDI 2 años" loading="lazy">
+      <img src="NatureMIDI_4_anos.png" alt="NatureMIDI 4 años" loading="lazy">
     </div>
   </div>
   <div class="tool-videos">
@@ -1084,7 +1091,7 @@ footer {
 <section id="reconocimientos" class="fade-in">
   <div>
     <div class="sec-label">Trayectoria</div>
-    <div class="sec-title">Reconoci-<br>mientos.</div>
+    <div class="sec-title">Reconocimientos.</div>
     <div class="award-list">
       <div class="award-item featured">
         <div class="award-year">2024</div>
@@ -1190,6 +1197,7 @@ footer {
   <div id="festivales">
     <div class="festival-col fade-in">
       <div class="festival-artist">LaTorre</div>
+      <div class="festival-row"><span>Gala Casa Ecuador — F1 Abu Dhabi</span><span>2025</span></div>
       <div class="festival-row"><span>Festival Capitol Land</span><span>2024</span></div>
       <div class="festival-row"><span>BIME, Bilbao</span><span>2023</span></div>
       <div class="festival-row"><span>Underfest, Vigo</span><span>2023</span></div>
@@ -1213,6 +1221,10 @@ footer {
       <p class="festival-note-text">
         Casi dos décadas de experiencia como técnico de sonido en directo y diseñador de playback para producciones de gran formato.
       </p>
+      <div style="margin-top: 20px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px;">Artistas</div>
+        <p style="font-family: 'Roboto', sans-serif; font-size: 11px; font-weight: 300; color: var(--mid); line-height: 1.8; letter-spacing: 0.02em;">Miel · Machaka · Papaya Dada · Guardarraya · Verde 70 · La Máquina Camaleón · Jombriel · Swing Original Monks · Biorn Borg · Paola Navarrete · Fausto Miño · Pancho Terán · Mateo Kingman · Héctor Napolitano · Mirella Cesa · Daniel Betancourt · Carlos Vives · Orquesta Sinfónica Nacional del Ecuador & more.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1223,8 +1235,8 @@ footer {
     <div class="sec-label">Contacto</div>
     <div class="contact-big">Hablemos.</div>
     <div class="contact-links">
-      <a class="contact-link" href="/cdn-cgi/l/email-protection#90f1fcf5faf1fef4e2ffbefdf5fef4ffeaf1bee3f4d0f7fdf1f9fcbef3fffd">
-        <span><span class="__cf_email__" data-cfemail="fa9b969f909b949e8895d4979f949e95809bd4899eba9d979b9396d4999597">[email&#160;protected]</span></span>
+      <a class="contact-link" href="mailto:alejomendoza@me.com">
+        <span>alejomendoza@me.com</span>
         <span class="contact-link-label">Email</span>
       </a>
       <a class="contact-link" href="https://www.instagram.com/xuzu593/" target="_blank" rel="noopener">
