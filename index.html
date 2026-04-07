@@ -801,16 +801,19 @@ footer {
 .video-big-link:hover { border-color: var(--acc); }
 
 .vbl-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--dim);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--mid);
+  transition: color 0.2s;
 }
+
+.video-big-link:hover .vbl-label { color: var(--fg); }
 
 .vbl-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 300;
   color: var(--acc);
   letter-spacing: -0.01em;
