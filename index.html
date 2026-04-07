@@ -944,14 +944,6 @@ footer {
       <img src="NatureMIDI_4_anos.png" alt="NatureMIDI 4 años" loading="lazy" onclick="openLightbox(4)">
     </div>
   </div>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;">
-  <button onclick="event.stopPropagation();prevImg()" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);background:none;border:0.5px solid rgba(196,181,232,0.3);color:#C4B5E8;font-size:24px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
-  <img id="lightbox-img" src="" style="max-width:90vw;max-height:88vh;object-fit:contain;border:0.5px solid rgba(196,181,232,0.15);">
-  <button onclick="event.stopPropagation();nextImg()" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);background:none;border:0.5px solid rgba(196,181,232,0.3);color:#C4B5E8;font-size:24px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
-  <div id="lightbox-counter" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:rgba(196,181,232,0.5);"></div>
-</div>
   <div class="tool-videos">
     <div>
       <div class="video-label">Demo 01</div>
@@ -986,14 +978,12 @@ footer {
         <iframe src="https://www.youtube-nocookie.com/embed/vSQq_cGZj7I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </div>
-    <a class="video-big-link" href="https://youtube.com/shorts/vSQq_cGZj7I" target="_blank" rel="noopener">
-      <span class="vbl-label">Demo 02</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
-    <a class="video-big-link" href="https://youtube.com/shorts/x_beXRU49ig" target="_blank" rel="noopener">
-      <span class="vbl-label">Demo 03</span>
-      <span class="vbl-title">Ver video ↗</span>
-    </a>
+    <div>
+      <div class="video-label">Demo 02</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/SSCIrRJUT_Q?si=EbafShaxV7wLoKU8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1334,4 +1324,21 @@ setTimeout(function() {
   }
 }, 3000);
 
-const observer = new Interse
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) el.target.classList.add('visible');
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;">
+  <button onclick="event.stopPropagation();prevImg()" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);background:none;border:0.5px solid rgba(196,181,232,0.3);color:#C4B5E8;font-size:24px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
+  <img id="lightbox-img" src="" style="max-width:90vw;max-height:88vh;object-fit:contain;border:0.5px solid rgba(196,181,232,0.15);">
+  <button onclick="event.stopPropagation();nextImg()" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);background:none;border:0.5px solid rgba(196,181,232,0.3);color:#C4B5E8;font-size:24px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
+  <div id="lightbox-counter" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:rgba(196,181,232,0.5);"></div>
+</div>
+
+</body>
+</html>
